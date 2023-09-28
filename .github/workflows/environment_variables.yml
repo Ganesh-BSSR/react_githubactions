@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print Workflow level environment variable
-        run: echo $project-name
+        run: echo ${{env.project-name}}
       - name: Print Job Level environment variable
-        run: echo $job-name
+        run: echo ${{env.job-name}}
       - name: Print Step Level environment variable
         env:
           step-details: executing step level variable
-        run: echo $step-details
+        run: echo ${{env.step-details}}
