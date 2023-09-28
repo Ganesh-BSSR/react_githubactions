@@ -1,4 +1,4 @@
-const Content = () => <div>Enjoy Github actions by doing every bit of it</div>
+const Content = () => <h2>Enjoy Github actions by doing every bit of it</h2>
 
 function App() {
   return (
