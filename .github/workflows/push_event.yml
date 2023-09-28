@@ -1,8 +1,6 @@
 name: Main Branch Push
-on:
-  push:
-    branches:
-      - main
+on: workflow_dispatch
+
 jobs:
   test:
     runs-on: ubuntu-latest
