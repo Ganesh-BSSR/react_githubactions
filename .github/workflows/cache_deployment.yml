@@ -51,4 +51,4 @@ jobs:
         with:
           name: dist-files
       - name: List out all files
-        uses: ls
+        run: ls
