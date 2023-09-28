@@ -1,0 +1,24 @@
+name: Job Outputs
+on: workflow_dispatch
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    outputs:
+      firstParameter: ${{ steps.step1.outputs.firstParam }}
+      secondParameter: ${{ steps.step2.outputs.secondParam }}
+    steps:
+      - name: Set firstParameter to hello
+        id: step1
+        run: echo "firstParam=hello" >> "$GITHUB_OUTPUT"
+      - name: Set secondParameter to world
+        id: step2
+        run: echo "secondParam=world" >> "$GITHUB_OUTPUT"
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get First Parameter Value
+        env:
+          helloParam: ${{ needs.job1.outputs.firstParameter }}
+          worldParam: ${{ needs.job1.outputs.secondParameter }}
+        run: echo "$helloParam $worldParam"
