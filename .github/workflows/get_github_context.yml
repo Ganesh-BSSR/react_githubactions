@@ -8,5 +8,5 @@ jobs:
         env:
           cacheName: cache-the-context
         run: |
-          echo "$cacheName"
+          echo "${{ env.cacheName }}"
           echo "${{ toJSON(github)}}"
