@@ -1,0 +1,13 @@
+name: Event Activities Pull request
+on:
+  pull_request:
+    types:
+      - opened
+    paths-ignore:
+      - '.github/workflows/**'
+jobs:
+  sample-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Event Activities
+        run: echo Welcome to event activities
