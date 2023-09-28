@@ -4,7 +4,7 @@ on:
     branches:
       - main
 jobs:
-  main-branch-push:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -15,3 +15,32 @@ jobs:
         run: npm ci
       - name: Test Project
         run: npm run test
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v4
+      - name: Install Node
+        uses: actions/setup-node@v3
+      - name: Install Dependencies
+        run: npm ci
+      - name: Build Project
+        run: npm run build
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-files
+          path: build
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: dist-files
+      - name: Dist File Contents
+        run: ls
+      - name: Deploy
+        run: echo "Deploying..."
