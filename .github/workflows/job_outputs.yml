@@ -17,8 +17,10 @@ jobs:
     needs: job1
     runs-on: ubuntu-latest
     steps:
-      - name: Get First Parameter Value
+      - name: Get Job Parameter values
         env:
           helloParam: ${{ needs.job1.outputs.firstParameter }}
           worldParam: ${{ needs.job1.outputs.secondParameter }}
         run: echo "$helloParam $worldParam"
+      - name: Get Job Parameters without environment setup
+        run: echo "${{ needs.job1.outputs.firstParameter }} - ${{ needs.job1.outputs.secondParameter }}"
